@@ -2,42 +2,37 @@
     <div class="position-sticky pt-3 sidebar-sticky">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{{url('/')}}">
+                <a class="nav-link active" aria-current="page" href="{{route('dashboard')}}">
                     <span data-feather="home" class="align-text-bottom"></span>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/orders')}}">
+                <a class="nav-link" href="{{route('donar.list')}}">
                     <span data-feather="file" class="align-text-bottom"></span>
-                    Orders
+                    Donar
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/users')}}">
+                <a class="nav-link" href="{{route('patient.list')}}">
                     <span data-feather="file" class="align-text-bottom"></span>
-                    Users
+                    Patient
                 </a>
             </li>  <li class="nav-item">
                 <a class="nav-link" href="{{route('user.create')}}">
                     <span data-feather="file" class="align-text-bottom"></span>
-                    New User
+                    Request
                 </a>
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="{{url('/categories')}}">
+                <a class="nav-link" href="{{route('category.list')}}">
                     <span data-feather="file" class="align-text-bottom"></span>
-                    Categories
+                    Blood Group
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('product.list')}}">
-                    <span data-feather="file" class="align-text-bottom"></span>
-                    Products
-                </a>
-            </li>
+           
 
             <li class="nav-item">
                 <a class="nav-link" href="{{route('brand.list')}}">
