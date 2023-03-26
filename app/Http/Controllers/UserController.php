@@ -32,8 +32,12 @@ class UserController extends Controller
         if(Auth::attempt($credentials))
         {
             return redirect()->route('dashboard');
+            notify()->success('login Success.');
+
         }
-        return redirect()->back()->with('message','invalid credentials');
+        // return redirect()->back()->with('message','invalid credentials');
+        notify()->error('invalid cridantials.');
+
 
     }
 
@@ -41,6 +45,8 @@ class UserController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->back()->with('message','Logout successful.');
+        return redirect()->back();
+        notify()->success('logout Success.');
+
     }
 }

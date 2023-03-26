@@ -6,10 +6,12 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RequestController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Webcontrol;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Routing\RequestContext;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +35,7 @@ Route::group(['middleware'=>'auth'],function (){
 
     Route::get('/',[HomeController::class,'home'])->name('dashboard');
     Route::get('/users',[UserController::class,'list'])->name('user.list');
-    Route::get('/create/user',[UserController::class,'create'])->name('user.create');
+    Route::get('/blood_request',[RequestController::class,'bloodrequest'])->name('blood.request');
     Route::get('/categories',[CategoryController::class,'list'])->name('category.list');
     Route::get('/category/create',[CategoryController::class,'createForm'])->name('createform');
     Route::post('/category/store',[CategoryController::class,'store'])->name('category.store');
@@ -45,6 +47,9 @@ Route::group(['middleware'=>'auth'],function (){
     Route::post('/product/store',[ProductController::class,'store'])->name('product.store');
     Route::get('/patient/list',[CustomerController::class,'patient_list'])->name('patient.list');
     Route::get('/donar/list',[CustomerController::class,'donar_list'])->name('donar.list');
+    Route::get('/Approved/{request_id}', [RequestController::class, 'update'])->name('request.update');
+    Route::get('/Reject/{request_id}', [RequestController::class, 'Reject'])->name('request.reject');
+
 
 });
 });
@@ -55,7 +60,13 @@ Route::post('/register/patient', [Webcontrol::class, 'registration_patient'])->n
 Route::post('/register/donar', [Webcontrol::class, 'registration_donar'])->name('donar.registration');
 Route::post('/login', [Webcontrol::class, 'login'])->name('user.login');
 
-Route::group(['middleware'=>'auth("customer")'],function (){
+Route::group(['middleware'=>'auth:customer'],function (){
 Route::get('/logout', [Webcontrol::class, 'customer_logout'])->name('web.logout');
+Route::get('/profile',[Webcontrol::class,'profile'])->name('user.profile');
+Route::put('/profile/update', [Webcontrol::class, 'updateProfile'])->name('profile.update');
+
+Route::post('/request',[RequestController::class,'request'])->name('request');
+Route::get('/blood_request',[RequestController::class,'checkrequest'])->name('check.request');
+
 
 });

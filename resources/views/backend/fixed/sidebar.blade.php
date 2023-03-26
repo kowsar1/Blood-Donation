@@ -20,7 +20,7 @@
                     Patient
                 </a>
             </li>  <li class="nav-item">
-                <a class="nav-link" href="{{route('user.create')}}">
+                <a class="nav-link" href="{{route('blood.request')}}">
                     <span data-feather="file" class="align-text-bottom"></span>
                     Request
                 </a>

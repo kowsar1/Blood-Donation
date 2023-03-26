@@ -12,7 +12,7 @@ class Webcontrol extends Controller
 {
     public function webHome()
     {
-        return view('frontend.master');
+        return view('frontend.pages.home');
     }
 
     public function registration_patient(Request $request)
@@ -23,11 +23,13 @@ class Webcontrol extends Controller
             'email' => $request->customer_email,
             'password' => bcrypt($request->customer_password),
             'mobile' => $request->phone,
+            'address' => $request->address,
             'blood' => $request->blood,
             'role' => 'Patient'
         ]);
+        return redirect()->back();
 
-        return redirect()->back()->with('message', 'Registration Success.');
+        notify()->success('Patient Registration Success.');
     }
     public function registration_donar(Request $request)
     {
@@ -48,6 +50,7 @@ class Webcontrol extends Controller
             'password' => bcrypt($request->customer_password),
             'mobile' => $request->phone,
             'dob' => $request->dob,
+            'address' => $request->address,
             'blood' => $request->blood,
             'role' => 'Donar'
         ]);
@@ -78,5 +81,25 @@ class Webcontrol extends Controller
         notify()->success('Logout success');
 
         return redirect()->route('home');
+    }
+    public function profile()
+    {
+        // dd('profile');
+        return view('frontend.profile');
+    }
+    public function updateProfile(Request $request)
+    {
+       //validation
+    //    dd($request->all());
+
+        $customer=Customer::find(auth('customer')->user()->id);
+        $customer->update([
+           'name'=>$request->name,
+           'address'=>$request->address,
+           'mobile'=>$request->phone,
+        ]);
+
+        notify()->success('User profile updated.');
+        return redirect()->back();
     }
 }
