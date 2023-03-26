@@ -107,10 +107,10 @@
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item active"><a class="nav-link" href="index.html">Home</a></li>
                             <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
-                            @auth
-
-                            <li class="nav-item"> <a href="#" class="nav-item nav-link"> {{auth()->user()->name}}</a></li>
-                            <li class="nav-item"> <a href="{{route('user.logout')}}" class="nav-item nav-link"> Log Out</a></li>
+                           
+                            @auth('customer')
+                            <li class="nav-item"> <a href="#" class="nav-item nav-link"> {{ auth('customer')->user()->name}}</a></li>
+                            <li class="nav-item"> <a href="{{route('web.logout')}}" class="nav-item nav-link"> Log Out</a></li>
                             @else
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Register</a>

@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Webcontrol;
+use App\Models\Customer;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,7 +55,7 @@ Route::post('/register/patient', [Webcontrol::class, 'registration_patient'])->n
 Route::post('/register/donar', [Webcontrol::class, 'registration_donar'])->name('donar.registration');
 Route::post('/login', [Webcontrol::class, 'login'])->name('user.login');
 
-Route::group(['middleware'=>'auth'],function (){
-Route::get('/logout', [Webcontrol::class, 'logout'])->name('user.logout');
+Route::group(['middleware'=>'auth("customer")'],function (){
+Route::get('/logout', [Webcontrol::class, 'customer_logout'])->name('web.logout');
 
 });
