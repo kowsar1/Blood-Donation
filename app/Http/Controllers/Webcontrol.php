@@ -37,7 +37,7 @@ class Webcontrol extends Controller
         $validate = Validator::make($request->all(), [
             'email' => 'required|email|unique:customers',
 
-            'dob' => 'required|date|before:2001-04-15'
+            'dob' => 'required|date|before:2005-04-15'
 
         ]);
         if ($validate->fails()) {

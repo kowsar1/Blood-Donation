@@ -91,21 +91,10 @@ class RequestController extends Controller
     }
     public function checkrequest()
     {
-        // dd('request');
-        if (\request()->ajax()) {
-            $users = ModelsRequest::where('status','active')->get();
-            return \Yajra\DataTables\Facades\DataTables::of($users)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="" class="edit btn btn-success btn-sm">Accept</a>
-                        <a href="" class="delete btn btn-danger btn-sm">Delete</a>
-                        ';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
+        $data = ModelsRequest::where('status', 'active')->get();
+        // dd($data);
 
-        return view('frontend.pages.request_check');
+
+        return view('frontend.pages.request_check', compact('data'));
     }
 }

@@ -192,7 +192,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="number">Date of Birth</label>
+                            <label for="number">Date of Birth(Age must be 18+)</label>
                             <input name="dob" type="date" class="form-control" id="number" placeholder="Enter date">
                         </div>
                         <div class="form-group">
