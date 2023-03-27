@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AcceptRequest;
 use App\Models\Customer;
 use App\Models\Request as ModelsRequest;
 use Illuminate\Http\Request;
@@ -91,10 +92,11 @@ class RequestController extends Controller
     }
     public function checkrequest()
     {
-        $data = ModelsRequest::where('status', 'active')->get();
-        // dd($data);
+        $data = ModelsRequest::where('status', 'active')->where("blood",auth("customer")->user()->blood)->get();
+        $allAcceptRequest = AcceptRequest::where("User_id", auth("customer")->user()->id)->OrderBy("id","DESC")->get();
+        $lastDonate = $allAcceptRequest->first();
 
 
-        return view('frontend.pages.request_check', compact('data'));
+        return view('frontend.pages.request_check', compact('data','lastDonate',"allAcceptRequest"));
     }
 }
