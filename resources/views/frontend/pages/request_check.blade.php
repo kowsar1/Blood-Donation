@@ -41,6 +41,7 @@
                     <div class="alert alert-success" role="alert">
                         <strong>Donated Blood</strong>
                     </div>
+                    
                 @else
                     @if(isset($lastDonate))
                         @if($lastDonate->created_at >= date('Y-m-d', strtotime('-90 days')))
