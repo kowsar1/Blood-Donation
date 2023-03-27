@@ -48,12 +48,12 @@
                             <strong>Sorry you cannot donate blood</strong>
                             <a href="" class="btn btn-warning">Reject</a>
                         </div>
-                        @else
-                        <div class="alert alert-danger" role="alert">
-                            <strong>Donate Now</strong>
-                            <a href="{{route('accept.request',$sell->id)}}" class="btn btn-danger">Accept</a>
-                        </div>
                         @endif
+                    @else
+                    <div class="alert alert-danger" role="alert">
+                            <a href="{{route('accept.request',$sell->id)}}" class="btn btn-danger">Donate Now</a>
+                        </div>
+                        
                     @endif
                 @endif
                 </td>
